@@ -11,12 +11,12 @@ type Post = {
 
 export default async function Page() {
   const host = headers().get('host');
-  const res = await fetch(`http://${host}/api/posts`, { method: 'GET' });
-  const data = await res.json();
+  const res = await fetch(`http://${host}/api/posts`);
+  const { posts } = await res.json();
 
   return (
     <div>
-      {data.posts.map((post: Post, i: number) => (
+      {posts.map((post: Post, i: number) => (
         <div key={i}>
           <h2>{post.title}</h2>
           <p>{post.date}</p>
