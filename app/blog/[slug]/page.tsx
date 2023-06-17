@@ -1,6 +1,7 @@
-import { MDXRemote } from 'next-mdx-remote/rsc';
+import fs from "fs";
+import path from "path";
+import { compileMDX } from 'next-mdx-remote/rsc';
 import Layout from "./layout";
-import { headers } from 'next/headers';
 
 type PageParams = {
   slug: string;
@@ -12,13 +13,13 @@ type PageProps = {
 
 export default async function Page({ params }: PageProps) {
   const { slug } = params;
-  const host = headers().get('host');
-  const res = await fetch(`http://${host}/api/posts/${slug}`);
-  const { content } = await res.json();
+  const dirPath = path.join(process.cwd(), "mdx");
+  const source = fs.readFileSync(`${dirPath}/${slug}.mdx`, "utf-8");
+  const { content } = await compileMDX({ source, options: { parseFrontmatter: true }})
 
   return (
     <Layout>
-      <MDXRemote source={content} />
+      {content}
     </Layout>
   );
 }
