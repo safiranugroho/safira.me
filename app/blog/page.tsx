@@ -20,13 +20,15 @@ export default async function Page() {
 
   return (
     <div>
-      {posts.map(({ slug, frontmatter }: Post, i: number) => (
-        <div key={i}>
-          <h2>{frontmatter.title}</h2>
-          <p>{frontmatter.date.toISOString()}</p>
-          <p>{frontmatter.description}</p>
-          <Link href={`/blog/${slug}`}>Keep reading &gt;</Link>
-        </div>
+      {posts
+        .sort((a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime())
+        .map(({ slug, frontmatter }: Post, i: number) => (
+          <div key={i}>
+            <h2>{frontmatter.title}</h2>
+            <p>{frontmatter.date.toISOString()}</p>
+            <p>{frontmatter.description}</p>
+            <Link href={`/blog/${slug}`}>Keep reading &gt;</Link>
+          </div>
       ))}
     </div>
   );
