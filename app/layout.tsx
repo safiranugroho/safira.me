@@ -28,7 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className='bg-white prose p-24'>{children}</body>
+      <body className='bg-none bg-white dark:bg-slate-800 p-24 prose dark:prose-invert'>{children}</body>
     </html>
   )
 }
