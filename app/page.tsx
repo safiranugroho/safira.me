@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col">
+    <>
       <h1>Hi, I&apos;m Safira 👋🏽</h1>
       <p>
         I&apos;m a software engineer,<br />
@@ -18,6 +18,6 @@ export default function Home() {
         and <Link href="https://github.com/safiranugroho">GitHub</Link>,<br/> 
         or reach me at <Link href="mailto:safiranugroho+site@gmail.com">safiranugroho@gmail.com</Link>.
       </p>
-    </main>
+    </>
   )
 }

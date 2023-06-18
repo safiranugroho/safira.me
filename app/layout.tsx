@@ -14,7 +14,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <body className={`relative bg-none max-w-full flex flex-col md:flex-row ${prose}`}>
         <Navigation />
-        <main className="flex min-h-screen w-full flex-col p-8 md:py-12">
+        <main className="flex w-full flex-col p-8 md:py-12">
           {children}
         </main>
         <ThemeToggle />
