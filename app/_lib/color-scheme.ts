@@ -47,6 +47,11 @@ const colorSchemes: Record<string, ColorScheme> = {
     theme: 'prose-peach-army',
     bgLight: 'bg-peach-500',
     bgDark: 'dark:bg-army-500'
+  },
+  'ocean-ruby': {
+    theme: 'prose-ocean-ruby',
+    bgLight: 'bg-ocean-500',
+    bgDark: 'dark:bg-ruby-500'
   }
 };
 
