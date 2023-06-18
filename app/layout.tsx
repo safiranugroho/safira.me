@@ -21,7 +21,6 @@ export default function RootLayout({
       <body className={`relative bg-none max-w-full flex flex-col md:flex-row ${lightMode} ${darkMode}`}>
         <nav className='sticky top-0 bg-inherit min-w-max md:w-1/4'>
           <ul className='sticky top-0 m-0 py-4 md:py-10 px-8 list-none w-full flex flex-row justify-between md:flex-col md:gap-0'>
-            <li><ThemeToggle /></li>
             <li><Link href="/"><InlineImage src='/favicon.ico' alt="Home icon" />Home</Link></li>
             <li><Link href="/blog"><InlineImage src='/blog.png' alt="Blog icon" />Blog</Link></li>
             <li><Link href="/doodles"><InlineImage src='/doodles.png' alt="Doodles icon" />Doodles</Link></li>
@@ -30,6 +29,7 @@ export default function RootLayout({
         <main className="flex min-h-screen w-full flex-col p-8 md:py-12">
           {children}
         </main>
+        <ThemeToggle />
       </body>
     </html>
   )

@@ -22,7 +22,7 @@ export const ThemeToggle = () => {
   }, []);
 
   return (
-    <button title="Color theme toggle" onClick={onThemeChange}>
+    <button title="Color theme toggle" onClick={onThemeChange} className="hidden md:block md:fixed md:bottom-8 md:left-8">
       Toggle theme
     </button>
   )
