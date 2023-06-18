@@ -19,7 +19,8 @@ export default async function Page() {
   const posts = await getPosts();
 
   return (
-    <div>
+    <>
+      <h1>Blog</h1>
       {posts
         .sort((a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime())
         .map(({ slug, frontmatter }: Post, i: number) => (
@@ -30,7 +31,7 @@ export default async function Page() {
             <Link href={`/blog/${slug}`}>Keep reading &gt;</Link>
           </div>
       ))}
-    </div>
+    </>
   );
 }
 
