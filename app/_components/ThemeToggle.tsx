@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { getTheme, setTheme, persistTheme } from "../_lib/theme";
+import { getColorScheme, getRandomColorScheme, persistColorScheme, setColorScheme } from "../_lib/color-scheme";
 
 function onThemeChange() {
   const currentTheme = getTheme();
@@ -22,6 +23,17 @@ export const ThemeToggle = () => {
 
     return () => {
       prefersDark.removeEventListener('change', onThemeChange);
+    }
+  }, []);
+
+  useEffect(() => {
+    const currentColorScheme = getColorScheme();
+    if (currentColorScheme) {
+      setColorScheme(currentColorScheme);
+    } else {
+      const colorScheme = getRandomColorScheme();
+      persistColorScheme(colorScheme);
+      setColorScheme(colorScheme);
     }
   }, []);
 
