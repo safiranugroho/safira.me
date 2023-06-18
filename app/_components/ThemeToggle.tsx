@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getTheme, setTheme, persistTheme } from "../_lib/theme";
 import { getColorScheme, getRandomColorScheme, persistColorScheme, setColorScheme } from "../_lib/color-scheme";
+import { Switch } from '@headlessui/react';
+import Image from "next/image";
 
 function onThemeChange() {
   const currentTheme = getTheme();
@@ -12,14 +14,18 @@ function onThemeChange() {
 }
 
 export const ThemeToggle = () => {
+  const [isDarkMode, setDarkMode] = useState(false);
+
   useEffect(() => {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
     const systemTheme = prefersDark.matches ? "dark" : "light";
     const currentTheme = getTheme();
 
     prefersDark.addEventListener('change', onThemeChange);
-    persistTheme(currentTheme || systemTheme);
-    setTheme(currentTheme || systemTheme);
+    const theme = currentTheme || systemTheme;
+    persistTheme(theme);
+    setTheme(theme);
+    setDarkMode(theme === 'dark');
 
     return () => {
       prefersDark.removeEventListener('change', onThemeChange);
@@ -37,9 +43,22 @@ export const ThemeToggle = () => {
     }
   }, []);
 
+  const onChange = (checked: boolean) => { 
+    setDarkMode(checked); 
+    onThemeChange(); 
+  };
+
   return (
-    <button title="Color theme toggle" onClick={onThemeChange} className="hidden md:block md:fixed md:bottom-8 md:left-8">
-      Toggle theme
-    </button>
+    <div className="hidden md:flex md:flex-col md:gap-4 md:fixed md:bottom-8 md:left-8">
+      <Switch checked={isDarkMode} onChange={onChange} className="bg-[rgba(255,255,255,0.1)] dark:bg-[rgba(0,0,0,0.1)] inline-flex h-7 w-12 items-center rounded-full transition-colors ring-current ring-1 ring-inset ring-offset-0">
+        <Image 
+          src={isDarkMode ? '/light-mode.png' : '/dark-mode.png'} 
+          alt={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+          height={20}
+          width={20}
+          className={`${isDarkMode ? 'translate-x-6' : 'translate-x-1'} inline-block transform rounded-full bg-current transition`}
+        />
+      </Switch>
+    </div>
   )
 }
