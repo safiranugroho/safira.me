@@ -14,15 +14,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className='relative bg-none bg-white dark:bg-slate-800 prose dark:prose-invert flex flex-col md:flex-row'>
-        <nav className='sticky top-0 bg-inherit min-w-max md:w-2/5'>
-          <ul className='sticky top-0 m-0 py-4 px-8 list-none w-full flex flex-row justify-between md:flex-col md:gap-0'>
-            <li><Link href="/"><InlineImage src='/favicon.ico' alt="Home icon" className='inline pr-1 m-0'/>Home</Link></li>
-            <li><Link href="/blog"><InlineImage src='/blog.png' alt="Blog icon" className='inline pr-1 m-0'/>Blog</Link></li>
-            <li><Link href="/doodles"><InlineImage src='/doodles.png' alt="Doodles icon" className='inline pr-1 m-0'/>Doodles</Link></li>
+      <body className='relative bg-none bg-white dark:bg-slate-800 prose dark:prose-invert max-w-full flex flex-col md:flex-row'>
+        <nav className='sticky top-0 bg-inherit min-w-max md:w-1/4'>
+          <ul className='sticky top-0 m-0 py-4 md:py-10 px-8 list-none w-full flex flex-row justify-between md:flex-col md:gap-0'>
+            <li><Link href="/"><InlineImage src='/favicon.ico' alt="Home icon" />Home</Link></li>
+            <li><Link href="/blog"><InlineImage src='/blog.png' alt="Blog icon" />Blog</Link></li>
+            <li><Link href="/doodles"><InlineImage src='/doodles.png' alt="Doodles icon" />Doodles</Link></li>
           </ul>
         </nav>
-        <main className="flex min-h-screen w-full flex-col p-8 md:py-12 md:pl-24">
+        <main className="flex min-h-screen w-full flex-col p-8 md:py-12">
           {children}
         </main>
       </body>
