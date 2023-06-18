@@ -9,7 +9,7 @@ type MetadataProps = {
 }
 
 const Metadata = ({ label, value }: MetadataProps) => (
-  <p className="text-sm text-neutral-500 flex gap-2 m-0 lg:flex-col lg:gap-0 xl:flex-row xl:gap-2">
+  <p className="text-sm flex gap-2 m-0 lg:flex-col lg:gap-0 xl:flex-row xl:gap-2">
     <span className="font-semibold">{label}:</span>
     <span>{value}</span>
   </p>

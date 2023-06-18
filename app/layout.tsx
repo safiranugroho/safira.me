@@ -13,9 +13,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const lightMode = `prose bg-stone-100`;
+  const darkMode = `dark:prose-invert dark:bg-teal-950`;
+
   return (
     <html lang="en">
-      <body className='relative bg-none bg-white dark:bg-slate-800 prose dark:prose-invert max-w-full flex flex-col md:flex-row'>
+      <body className={`relative bg-none max-w-full flex flex-col md:flex-row ${lightMode} ${darkMode}`}>
         <nav className='sticky top-0 bg-inherit min-w-max md:w-1/4'>
           <ul className='sticky top-0 m-0 py-4 md:py-10 px-8 list-none w-full flex flex-row justify-between md:flex-col md:gap-0'>
             <li><ThemeToggle /></li>
