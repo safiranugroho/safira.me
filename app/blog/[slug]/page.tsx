@@ -1,16 +1,7 @@
-import fs from "fs";
-import path from "path";
-import { compileMDX } from 'next-mdx-remote/rsc';
-import remarkGfm from 'remark-gfm';
-import { format } from 'date-fns';
 import Layout from "./layout";
-
-type Frontmatter = {
-  title: string;
-  date: Date;
-  description: string;
-  image: string;
-};
+import { Metadata } from "next";
+import { dMMMMyyyy } from "../_lib/format-date";
+import { getCompiledMDX } from "../_lib/get-compiled-mdx";
 
 type PageParams = {
   slug: string;
@@ -22,17 +13,36 @@ type PageProps = {
 
 export default async function Page({ params }: PageProps) {
   const { slug } = params;
-  const dirPath = path.join(process.cwd(), "mdx");
-  const source = fs.readFileSync(`${dirPath}/${slug}.mdx`, "utf-8");
-  const { content, frontmatter } = await compileMDX<Frontmatter>({ source, options: { mdxOptions: {
-    remarkPlugins: [remarkGfm]
-  }, parseFrontmatter: true }})
+  const { content, frontmatter } = await getCompiledMDX(slug);
 
   return (
     <Layout>
       <h1 className="mb-2">{frontmatter.title}</h1>
-      <p className="text-sm mb-8">{format(frontmatter.date, 'd MMMM yyyy')}</p>
+      <p className="text-sm mb-8">{dMMMMyyyy(frontmatter.date)}</p>
       {content}
     </Layout>
   );
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = params;
+  const { frontmatter } = await getCompiledMDX(slug);
+  return {
+    title: frontmatter.title,
+    description: frontmatter.description,
+    openGraph: {
+      title: frontmatter.title,
+      description: frontmatter.description,
+      images: frontmatter.image,
+      type: 'article'
+    },
+    twitter: {
+      title: frontmatter.title,
+      description: frontmatter.description,
+      card: 'summary_large_image',
+      site: '@hisafira',
+      images: frontmatter.image ,
+      creator: '@hisafira',
+    }
+  }
 }

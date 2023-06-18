@@ -1,15 +1,9 @@
 import fs from "fs";
-import path from "path";
 import Link from "next/link";
-import { compileMDX } from "next-mdx-remote/rsc";
-import { format } from 'date-fns';
-
-type Frontmatter = {
-  title: string;
-  date: Date;
-  description: string;
-  image: string;
-};
+import { mdx } from "./_lib/dir-path";
+import { dMMMMyyyy } from "./_lib/format-date";
+import { getCompiledMDX } from "./_lib/get-compiled-mdx";
+import { Frontmatter } from "./_lib/types";
 
 type Post = {
   slug: string;
@@ -27,7 +21,7 @@ export default async function Page() {
         .map(({ slug, frontmatter }: Post, i: number) => (
           <div key={i} className="mb-4">
             <Link href={`/blog/${slug}`} className="text-2xl">{frontmatter.title}</Link>
-            <p className="text-sm mt-2">{format(frontmatter.date, 'd MMMM yyyy')}</p>
+            <p className="text-sm mt-2">{dMMMMyyyy(frontmatter.date)}</p>
             <p>{frontmatter.description}</p>
           </div>
       ))}
@@ -35,18 +29,11 @@ export default async function Page() {
   );
 }
 
-const dirPath = path.join(process.cwd(), "mdx");
 const getPosts = async () => {
   return Promise.all(fs
-    .readdirSync(dirPath, { withFileTypes: true })
+    .readdirSync(mdx, { withFileTypes: true })
     .filter((file) => file.name.endsWith('.mdx'))
     .map((file) => file.name.replace(/.mdx$/, ""))
-    .map(async (slug) => ({ slug, frontmatter: await getFrontmatter(slug) }))
+    .map(async (slug) => ({ slug, ...(await getCompiledMDX(slug)) }))
   );
-}
-
-const getFrontmatter = async (slug: string) => {
-  const source = fs.readFileSync(`${dirPath}/${slug}.mdx`, "utf-8");
-  const { frontmatter } = await compileMDX<Frontmatter>({ source, options: { parseFrontmatter: true }});
-  return frontmatter;
 }
