@@ -1,24 +1,23 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col">
-      <h1>Hi, I&apos;m Safira.</h1>
+      <h1>Hi, I&apos;m Safira 👋</h1>
       <p>
-        Software engineer at Spotify.<br />
-        She/her/dia. 🇲🇨<br />
-        Based in Melbourne/Naarm. 🇦🇺
+        I&apos;m a software engineer,<br />
+        based in Melbourne/Naarm 🇦🇺 <br />
+        and I go by she/her/dia. 🇲🇨
       </p>
       <p>
-        I&apos;m still figuring out the content of this site, but it will probably
-        be a mix of some stream-of-consciousness blog posts and any
-        experiments I do outside of work.
+        I <Link href="/blog">write</Link> and <Link href="/doodles">doodle</Link> sometimes.
       </p>
       <p>
-        Come find me on{' '}
-        <a href="https://www.twitter.com/hisafira/">Twitter</a>, <a href="https://www.linkedin.com/in/safiranugroho/">LinkedIn</a>,
-        and <a href="https://github.com/safiranugroho">GitHub</a>,<br/> 
-        or <a href="mailto:safiranugroho@gmail.com?subject=Hi from your blog!">shoot me an email</a>!
+        I&apos;m on <Link href="https://www.twitter.com/hisafira/">Twitter</Link>,{' '}
+        <Link href="https://www.linkedin.com/in/safiranugroho/">LinkedIn</Link>,
+        and <Link href="https://github.com/safiranugroho">GitHub</Link>,<br/> 
+        or reach me at <Link href="mailto:safiranugroho+site@gmail.com">safiranugroho@gmail.com</Link>.
       </p>
-      <p>👋</p>
     </main>
   )
 }
