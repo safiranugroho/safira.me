@@ -8,12 +8,13 @@ type RootLayoutProps = {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const lightMode = `prose bg-stone-100`;
-  const darkMode = `dark:prose-invert dark:bg-teal-950`;
+  const prose = `hover:prose-a:no-underline before:prose-code:hidden after:prose-code:hidden`;
+  const lightMode = `prose prose-moss-sapphire bg-moss-500`;
+  const darkMode = `dark:prose-invert dark:bg-sapphire-500`;
 
   return (
     <html lang="en">
-      <body className={`relative bg-none max-w-full flex flex-col md:flex-row hover:prose-a:no-underline ${lightMode} ${darkMode}`}>
+      <body className={`relative bg-none max-w-full flex flex-col md:flex-row ${prose} ${lightMode} ${darkMode}`}>
         <Navigation />
         <main className="flex min-h-screen w-full flex-col p-8 md:py-12">
           {children}

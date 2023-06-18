@@ -30,9 +30,6 @@ export const Navigation = () => {
       <ul className='sticky top-0 m-0 py-4 md:py-10 px-8 list-none w-full flex flex-row justify-between md:flex-col md:gap-0'>
         {nav.map(({ href, children }, i) => {
           const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
-          console.log({ pathname });
-          console.log({ href });
-          console.log({ isActive });
           return <li key={i}><Link href={href} className={isActive ? 'font-bold no-underline' : undefined}>{children}</Link></li>
         })}
       </ul>
