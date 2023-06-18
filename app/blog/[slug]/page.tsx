@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { compileMDX } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
+import { format } from 'date-fns';
 import Layout from "./layout";
 
 type Frontmatter = {
@@ -29,8 +30,8 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <Layout>
-      <h1>{frontmatter.title}</h1>
-      <h5>{frontmatter.date.toISOString()}</h5>
+      <h1 className="mb-2">{frontmatter.title}</h1>
+      <p className="text-sm mb-8">{format(frontmatter.date, 'd MMMM yyyy')}</p>
       {content}
     </Layout>
   );

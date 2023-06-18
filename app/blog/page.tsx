@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import Link from "next/link";
 import { compileMDX } from "next-mdx-remote/rsc";
+import { format } from 'date-fns';
 
 type Frontmatter = {
   title: string;
@@ -24,11 +25,10 @@ export default async function Page() {
       {posts
         .sort((a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime())
         .map(({ slug, frontmatter }: Post, i: number) => (
-          <div key={i}>
-            <h2>{frontmatter.title}</h2>
-            <p>{frontmatter.date.toISOString()}</p>
+          <div key={i} className="mb-4">
+            <Link href={`/blog/${slug}`} className="text-2xl">{frontmatter.title}</Link>
+            <p className="text-sm mt-2">{format(frontmatter.date, 'd MMMM yyyy')}</p>
             <p>{frontmatter.description}</p>
-            <Link href={`/blog/${slug}`}>Keep reading &gt;</Link>
           </div>
       ))}
     </>
