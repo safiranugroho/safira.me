@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 const InlineImage = ({ src, alt }: ImageProps) => (
-  <Image src={src} alt={alt} width={24} height={24} className='inline pr-2 m-0'/>
+  <Image src={src} alt={alt} width={30} height={30} className='inline pr-2 m-0 align-text-top'/>
 )
 
 export const Navigation = () => {

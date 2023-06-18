@@ -30,6 +30,28 @@ module.exports = {
         800: "#0e194a",
         900: "#070c25"
       },
+      lemon: {
+        100: "#fefcee",
+        200: "#fcfadd",
+        300: "#fbf7cc",
+        400: "#f9f5bb",
+        500: "#f8f2aa",
+        600: "#c6c288",
+        700: "#959166",
+        800: "#636144",
+        900: "#323022"
+      },
+      aubergine: {
+        100: "#dbcce6",
+        200: "#b799cd",
+        300: "#9366b4",
+        400: "#6f339b",
+        500: "#4b0082",
+        600: "#3c0068",
+        700: "#2d004e",
+        800: "#1e0034",
+        900: "#0f001a"
+      },
     },
     extend: {
       typography: ({ theme }) => ({
@@ -69,6 +91,44 @@ module.exports = {
             '--tw-prose-invert-pre-bg': 'rgb(0 0 0 / 50%)',
             '--tw-prose-invert-th-borders': theme('colors.moss[400]'),
             '--tw-prose-invert-td-borders': theme('colors.moss[400]'),
+          },
+        },
+        'lemon-aubergine': {
+          css: {
+            // Light mode
+            '--tw-prose-body': theme('colors.aubergine[500]'),
+            '--tw-prose-headings': theme('colors.aubergine[500]'),
+            '--tw-prose-lead': theme('colors.aubergine[600]'),
+            '--tw-prose-links': theme('colors.aubergine[500]'),
+            '--tw-prose-bold': theme('colors.aubergine[500]'),
+            '--tw-prose-counters': theme('colors.aubergine[500]'),
+            '--tw-prose-bullets': theme('colors.aubergine[500]'),
+            '--tw-prose-hr': theme('colors.lemon[400]'),
+            '--tw-prose-quotes': theme('colors.aubergine[500]'),
+            '--tw-prose-quote-borders': theme('colors.aubergine[600]'),
+            '--tw-prose-captions': theme('colors.aubergine[700]'),
+            '--tw-prose-code': theme('colors.aubergine[500]'),
+            '--tw-prose-pre-code': theme('colors.aubergine[700]'),
+            '--tw-prose-pre-bg': theme('colors.lemon[400]'),
+            '--tw-prose-th-borders': theme('colors.lemon[600]'),
+            '--tw-prose-td-borders': theme('colors.lemon[600]'),
+            // Dark mode
+            '--tw-prose-invert-body': theme('colors.lemon[500]'),
+            '--tw-prose-invert-headings': theme('colors.lemon[500]'),
+            '--tw-prose-invert-lead': theme('colors.lemon[400]'),
+            '--tw-prose-invert-links': theme('colors.lemon[500]'),
+            '--tw-prose-invert-bold': theme('colors.lemon[500]'),
+            '--tw-prose-invert-counters': theme('colors.lemon[500]'),
+            '--tw-prose-invert-bullets': theme('colors.lemon[500]'),
+            '--tw-prose-invert-hr': theme('colors.aubergine[400]'),
+            '--tw-prose-invert-quotes':  theme('colors.stone[150]'),
+            '--tw-prose-invert-quote-borders': theme('colors.aubergine[600]'),
+            '--tw-prose-invert-captions': theme('colors.lemon[500]'),
+            '--tw-prose-invert-code': theme('colors.lemon[500]'),
+            '--tw-prose-invert-pre-code': theme('colors.lemon[400]'),
+            '--tw-prose-invert-pre-bg': 'rgb(0 0 0 / 50%)',
+            '--tw-prose-invert-th-borders': theme('colors.lemon[400]'),
+            '--tw-prose-invert-td-borders': theme('colors.lemon[400]'),
           },
         },
       })

@@ -8,8 +8,8 @@ type RootLayoutProps = {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const prose = `hover:prose-a:no-underline before:prose-code:hidden after:prose-code:hidden`;
-  const lightMode = `prose prose-moss-sapphire bg-moss-500`;
+  const prose = `prose hover:prose-a:no-underline before:prose-code:hidden after:prose-code:hidden`;
+  const lightMode = `prose-moss-sapphire bg-moss-500`;
   const darkMode = `dark:prose-invert dark:bg-sapphire-500`;
 
   return (

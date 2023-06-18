@@ -1,10 +1,14 @@
 "use client";
 
 import { useEffect } from "react";
-import { onThemeChange } from "../_lib/on-theme-change";
-import { persistTheme } from "../_lib/persist-theme";
-import { getTheme } from "../_lib/get-theme";
-import { setTheme } from "../_lib/setTheme";
+import { getTheme, setTheme, persistTheme } from "../_lib/theme";
+
+function onThemeChange() {
+  const currentTheme = getTheme();
+  const preferredTheme = currentTheme === "light" ? "dark" : "light";
+  persistTheme(preferredTheme);
+  setTheme(preferredTheme);
+}
 
 export const ThemeToggle = () => {
   useEffect(() => {
