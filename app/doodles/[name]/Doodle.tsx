@@ -9,7 +9,7 @@ type DoodleProps = {
 export function Doodle({ name }: DoodleProps) {
   const Component = `doodle-${name}`;
   return <>
-    <Script src="http://localhost:5173/web-components.js" />
+    <Script src="https://doodles.safira.me/web-components.js" />
     <Component></Component>
   </>
 }
