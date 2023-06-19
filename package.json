@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "yarn build:doodles && next dev",
+    "build": "yarn build:doodles && next build",
+    "build:doodles": "yarn workspace @safira.me/doodles build",
     "start": "next start",
     "lint": "next lint"
   },
