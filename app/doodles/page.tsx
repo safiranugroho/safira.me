@@ -1,8 +1,18 @@
 import Link from "next/link";
 
+const kebabToCamel = (kebab: string): string =>
+  kebab
+    .split('-')
+    .reduce((acc, curr) => `${acc} ${curr.charAt(0).toUpperCase() + curr.slice(1)}`, '');
+
 export default async function Page() {
-  return <div>
-    <Link href="/doodles/ball">Ball</Link>
-    <Link href="/doodles/keyboard">Keyboard</Link>
-  </div>
+  const doodles = ['ball', 'filter', 'keyboard', 'position', 'rps', 'tip-calculator', 'weather'];
+
+  return (
+    <div className="flex flex-col">
+      {doodles.map((name, i) => (
+        <Link key={i} href={`/doodles/${name}`}>{kebabToCamel(name)}</Link>
+      ))}
+    </div>
+  );
 }
