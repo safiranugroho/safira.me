@@ -1,5 +1,7 @@
 "use client"
 
+import '@safira.me/doodles';
+
 export const Doodle = () => {
-  return <web-component-ball></web-component-ball>
+  return <doodles-ball></doodles-ball>
 }

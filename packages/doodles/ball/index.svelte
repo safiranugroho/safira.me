@@ -1,4 +1,4 @@
-<svelte:options tag="web-component-ball" />
+<svelte:options tag="doodles-ball" />
 
 <div class="container">
   <div class="ball" />

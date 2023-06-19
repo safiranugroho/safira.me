@@ -5,11 +5,16 @@
   "scripts": {
     "build": "rollup --config --bundleConfigAsCjs"
   },
+  "exports": {
+    ".": "./public/bundle.js"
+  },
   "dependencies": {},
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.1.0",
+    "@tsconfig/svelte": "^4.0.1",
     "rollup": "^3.25.1",
     "rollup-plugin-svelte": "^7.1.5",
-    "svelte": "^3.59.1"
+    "svelte": "^3.59.1",
+    "svelte-preprocess": "^5.0.4"
   }
 }

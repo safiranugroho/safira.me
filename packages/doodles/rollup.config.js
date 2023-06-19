@@ -1,26 +1,21 @@
 import svelte from 'rollup-plugin-svelte';
+import autoPreprocess from 'svelte-preprocess';
 import resolve from '@rollup/plugin-node-resolve';
 
 const config = {
   input: 'index.js',
   output: {
     file: 'public/bundle.js',
-    format: 'iife'
+    format: 'iife',
+    compact: true
   },
   plugins: [
     svelte({
-
+      /* options available https://github.com/sveltejs/svelte-preprocess/blob/master/docs/preprocessing.md */ 
+      preprocess: autoPreprocess(),
       // You can restrict which files are compiled
       // using `include` and `exclude`
       // include: 'src/components/**/*.svelte',
-
-      // Optionally, preprocess components with svelte.preprocess:
-      // https://svelte.dev/docs#compile-time-svelte-preprocess
-      // preprocess: {
-      //   style: ({ content }) => {
-      //     return transformStyles(content);
-      //   }
-      // },
 
       // Emit CSS as "files" for other plugins to process. default is true
       emitCss: false,
@@ -38,7 +33,6 @@ const config = {
 
       // You can pass any of the Svelte compiler options
       compilerOptions: {
-
         // By default, the client-side compiler is used. You
         // can also use the server-side rendering compiler
         // generate: 'ssr',
