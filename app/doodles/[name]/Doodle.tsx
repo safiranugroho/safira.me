@@ -1,12 +1,15 @@
 "use client"
 
-import '@safira.me/doodles';
+import Script from "next/script";
 
 type DoodleProps = {
   name: string;
 }
 
 export function Doodle({ name }: DoodleProps) {
-  const Component = `doodles-${name}`;
-  return <Component></Component>
+  const Component = `doodle-${name}`;
+  return <>
+    <Script src="http://localhost:5173/web-components.js" />
+    <Component></Component>
+  </>
 }
