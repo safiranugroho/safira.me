@@ -13,7 +13,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <head>
-        <link href={`${process.env.NEXT_PUBLIC_DOODLES_HOST}/web-components.css`} rel="stylesheet" />
+        <link href={`${process.env.NEXT_PUBLIC_DOODLES_HOST}/web-components-fonts.css`} rel="stylesheet" />
       </head>
       <body className={`relative bg-none max-w-full flex flex-col md:flex-row ${prose}`}>
         <Navigation />
