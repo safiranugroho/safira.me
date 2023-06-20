@@ -1,6 +1,5 @@
 "use client"
 
-import Head from "next/head";
 import Script from "next/script";
 
 type DoodleProps = {
@@ -10,7 +9,7 @@ type DoodleProps = {
 export function Doodle({ name }: DoodleProps) {
   const Component = `doodle-${name}`;
   return <>
-    <Script src="http://localhost:5173/web-components.js" />
+    <Script src={`${process.env.NEXT_PUBLIC_DOODLES_HOST}/web-components.js`} />
     <Component></Component>
   </>
 }
