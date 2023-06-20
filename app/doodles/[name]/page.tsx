@@ -1,4 +1,4 @@
-import { Doodle } from "./Doodle";
+import { Doodle } from "./_components/Doodle";
 
 type PageParams = {
   name: string;
