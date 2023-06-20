@@ -1,5 +1,6 @@
 "use client"
 
+import Head from "next/head";
 import Script from "next/script";
 
 type DoodleProps = {
@@ -9,7 +10,7 @@ type DoodleProps = {
 export function Doodle({ name }: DoodleProps) {
   const Component = `doodle-${name}`;
   return <>
-    <Script src="https://doodles.safira.me/web-components.js" />
+    <Script src="http://localhost:5173/web-components.js" />
     <Component></Component>
   </>
 }
