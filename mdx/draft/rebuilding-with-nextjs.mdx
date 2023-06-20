@@ -24,6 +24,13 @@ tags:
   - If the class names are dynamic, it won't generate the corresponding CSS.
 - @headlessui/react ^1.7.15
 - https://emoji.aranja.com/
+- Using custom elements from Svelte
+  - Rollup + a ton of plugins
+  - Cannot use inline styles bc of how the bundling works
+  - Publishing via NPM is actually a bit limiting, because I can't do server-side operations but I can't access the DOM either.
+  - Maybe can lead to overengineering? Maybe importing it from a script is ok for now?
+  - Embedding the doodles onto the site forces me to think about which parts of the doodles want to follow the parent's styling vs. doodle-specific styling
+  - Also forces the doodles to work with dark mode too
 
 - I almost don't want to publish my old blog posts, but I probably should keep them?
 
@@ -42,8 +49,13 @@ TODO:
   - [ ] Tip calculator doodle has a bug (needs to round up to 2 decimal points)
   - [x] https://robdodson.me/posts/at-font-face-doesnt-work-in-shadow-dom/
   - [x] Figure out how to import/set default css for doodles
-  - [ ] Make sure styling works with parent site
-  - [ ] Figure out how to host the doodles in the new infra
+  - [x] Enable HMR
+  - [x] Make sure styling works with parent site
+  - [ ] DRY the process of creating web components
+  - [ ] Position doodle is not working - styling is all off
+  - [ ] Separate playground styling from shared doodle styling
+  - [x] ~~Figure out how to host the doodles in the new infra~~ Publish as a package instead.
+  - [ ] Fix broken elements that don't work with dark mode
   - [ ] Figure out Prismjs styles
   - [ ] Doodles list
   - [ ] "This doodle is only available on desktop. Sry."
