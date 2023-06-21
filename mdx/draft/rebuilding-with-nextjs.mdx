@@ -31,6 +31,7 @@ tags:
   - Maybe can lead to overengineering? Maybe importing it from a script is ok for now?
   - Embedding the doodles onto the site forces me to think about which parts of the doodles want to follow the parent's styling vs. doodle-specific styling
   - Also forces the doodles to work with dark mode too
+  - If I need to query selectors, I need to do it inside the root element of the doodle (can't use document).
 
 - I almost don't want to publish my old blog posts, but I probably should keep them?
 
@@ -52,11 +53,11 @@ TODO:
   - [x] Enable HMR
   - [x] Make sure styling works with parent site
   - [ ] DRY the process of creating web components
-  - [ ] Position doodle is not working - styling is all off
+  - [x] Position doodle is not working - styling is all off
   - [ ] Separate playground styling from shared doodle styling
-  - [x] ~~Figure out how to host the doodles in the new infra~~ Publish as a package instead.
+  - [ ] Figure out how to host the doodles in the new infra
   - [ ] Fix broken elements that don't work with dark mode
-  - [ ] Figure out Prismjs styles
+  - [x] ~~Figure out Prismjs styles~~ Gave up, all code is the same color now.
   - [ ] Doodles list
   - [ ] "This doodle is only available on desktop. Sry."
   - [ ] Redirect doodles.safira.me to safira.me/doodles
