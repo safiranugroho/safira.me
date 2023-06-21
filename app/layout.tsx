@@ -12,9 +12,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang="en">
-      <head>
-        <link href={`${process.env.NEXT_PUBLIC_DOODLES_HOST}/web-components-fonts.css`} rel="stylesheet" />
-      </head>
       <body className={`relative bg-none max-w-full flex flex-col md:flex-row ${prose}`}>
         <Navigation />
         <main className="flex w-full flex-col p-8 md:py-12">

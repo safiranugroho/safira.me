@@ -1,6 +1,7 @@
 "use client"
 
-import Script from "next/script";
+import '@safiranugroho/doodles/components';
+import '@safiranugroho/doodles/fonts';
 
 type DoodleProps = {
   name: string;
@@ -9,7 +10,6 @@ type DoodleProps = {
 export function Doodle({ name }: DoodleProps) {
   const Component = `doodle-${name}`;
   return <>
-    <Script src={`${process.env.NEXT_PUBLIC_DOODLES_HOST}/web-components.js`} />
     <Component></Component>
   </>
 }
