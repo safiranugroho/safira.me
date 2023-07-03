@@ -1,6 +1,5 @@
 import './globals.css'
 import { Metadata } from 'next'
-import { ThemeToggle } from './_components/ThemeToggle'
 import { Navigation } from './_components/Navigation'
 
 type RootLayoutProps = {
@@ -17,7 +16,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <main className="flex w-full flex-col p-8 md:py-12">
           {children}
         </main>
-        <ThemeToggle />
       </body>
     </html>
   )
