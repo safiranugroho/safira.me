@@ -29,7 +29,6 @@ export default async function Layout({ children, params }: LayoutProps) {
     </article>
     <aside className="w-full lg:pl-8 lg:flex lg:flex-col lg:gap-4 xl:gap-0">
       <Metadata label="Last published" value={dMMMMyyyy(frontmatter.date)} />
-      <Metadata label="Tags" value={frontmatter.tags.join(', ')} />
     </aside>
   </div>;
 }
