@@ -1,7 +1,7 @@
 import { Doodle } from "./_components/Doodle";
 
 type PageParams = {
-  name: string;
+  slug: string;
 };
 
 export type PageProps = {
@@ -9,6 +9,6 @@ export type PageProps = {
 };
 
 export default async function Page({ params }: PageProps) {
-  const { name } = params;
-  return <Doodle name={name} />;
+  const { slug } = params;
+  return <Doodle name={slug} />;
 }

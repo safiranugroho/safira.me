@@ -24,6 +24,7 @@ export default async function Layout({ children, params }: LayoutProps) {
   const { frontmatter } = await getCompiledMDX(slug);
   return <div className="flex flex-col lg:flex-row">
     <article className="md:max-w-prose">
+      <h1 className="mb-0">{frontmatter.title}</h1>
       {children}
     </article>
     <aside className="w-full lg:pl-8 lg:flex lg:flex-col lg:gap-4 xl:gap-0">
