@@ -235,10 +235,10 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.3.1.tgz#edbb85ff95f3be41eaa70c6d6ad6d8ba0a9c7e46"
   integrity sha512-RkmuBcqiNioeeBKbgzMlOdreUkJfYaSjwgx9XDgGGpjvWgyaxWvDmZVSN9CS6LjEASadhgPv2BcFp+SeouWXXA==
 
-"@safiranugroho/doodles@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@safiranugroho/doodles/-/doodles-0.0.1.tgz#9409d1504cee8028678c4660797af858715bb467"
-  integrity sha512-Uk6Zcgs4f3VNwHp4svybJFiiYT9ijsxe/TY0A19L7/7r4KG56ieG0oPZMOjWWkuHDNhZvED0h5LBOiXAJr1Nzw==
+"@safiranugroho/doodles@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@safiranugroho/doodles/-/doodles-0.0.4.tgz#d8377cefe72fa72741a6ab2c8325a51b66631bfa"
+  integrity sha512-M3UjInCMpdWK7P82qbK3rKLGuGBl9CGd7wVre/B+HzzhBLDYlS7acNhX0u3ggv5qOVTFKZNxwuBVOBIoxUOi3g==
   dependencies:
     prismjs "^1.29.0"
     quagga "^0.12.1"
