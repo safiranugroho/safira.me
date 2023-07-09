@@ -2,14 +2,15 @@
 
 import '@safiranugroho/doodles/components';
 import '@safiranugroho/doodles/fonts';
-import { doodles } from '../../_doodles';
+import { doodles } from '@safiranugroho/doodles/metadata';
+import { Doodle } from '../../types';
 
 type DoodleProps = {
   name: string;
 }
 
 export function Doodle({ name }: DoodleProps) {
-  const doodle = doodles.find(d => d.slug === name)!;
+  const doodle = doodles.find((d: Doodle) => d.slug === name)!;
   const isAvailableOnMobile = doodle.screen.includes('mobile') || doodle.screen.includes('all');
   const isAvailableOnTablet = doodle.screen.includes('tablet') || doodle.screen.includes('all');
 

@@ -1,11 +1,6 @@
 import Link from "next/link";
 import { doodles } from "@safiranugroho/doodles/metadata";
-
-type Doodle = { 
-  slug: string; 
-  title: string, 
-  description: string 
-};
+import { Doodle } from "./types";
 
 export default async function Page() {
   return (

@@ -1,4 +1,5 @@
-import { doodles } from "../_doodles";
+import { doodles } from "@safiranugroho/doodles/metadata";
+import { Doodle } from "../types";
 
 type LayoutParams = {
   slug: string;
@@ -11,7 +12,7 @@ type LayoutProps = {
 
 export default function Layout({ params, children }: LayoutProps) {
   const { slug } = params;
-  const data = doodles.find(d => d.slug === slug)!;
+  const data = doodles.find((d: Doodle) => d.slug === slug)!;
   
   return <>
     <div className="mb-12">
