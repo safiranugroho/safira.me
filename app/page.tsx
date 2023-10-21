@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { IndexPage } from "./_components/IndexPage";
 
 export default function Home() {
   return (
-    <>
+    <IndexPage>
       <h1>Hi, I&apos;m Safira 👋🏽</h1>
       <p>
         I&apos;m a software engineer,<br />
@@ -18,6 +19,6 @@ export default function Home() {
         and <Link href="https://github.com/safiranugroho">GitHub</Link>,<br/> 
         or reach me at <Link href="mailto:safiranugroho+site@gmail.com">safiranugroho@gmail.com</Link>.
       </p>
-    </>
+    </IndexPage>
   )
 }

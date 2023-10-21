@@ -3,7 +3,7 @@ import Link from "next/link";
 import { mdx } from "./_lib/dir-path";
 import { getCompiledMDX } from "./_lib/get-compiled-mdx";
 import { Frontmatter } from "./_lib/types";
-import { IndexListPage } from "../_components/IndexListPage";
+import { IndexPage } from "../_components/IndexPage";
 
 type Post = {
   slug: string;
@@ -14,7 +14,9 @@ export default async function Page() {
   const posts = await getPosts();
 
   return (
-    <IndexListPage title="Blog" description="A stream of consciousness.">
+    <IndexPage>
+      <h1>Blog</h1>
+      <p>A stream of consciousness.</p>
       {posts
         .sort((a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime())
         .map(({ slug, frontmatter }: Post, i: number) => (
@@ -23,7 +25,7 @@ export default async function Page() {
             <p className="mt-0">{frontmatter.description}</p>
           </div>
       ))}
-    </IndexListPage>
+    </IndexPage>
   );
 }
 

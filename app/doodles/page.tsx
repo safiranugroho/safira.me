@@ -1,11 +1,13 @@
 import { doodles } from "@safiranugroho/doodles/metadata";
 import { Doodle } from "./types";
 import { IndexItem } from "../_components/IndexItem";
-import { IndexListPage } from "../_components/IndexListPage";
+import { IndexPage } from "../_components/IndexPage";
 
 export default async function Page() {
   return (
-    <IndexListPage title="Doodles" description="A collection of non-responsive, non-accessible, completely messy doodles.">
+    <IndexPage>
+      <h1>Doodles</h1>
+      <p>A collection of non-responsive, non-accessible, completely messy doodles.</p>
       {doodles.map((d: Doodle, i: number) => (
         <IndexItem
           key={i}
@@ -14,6 +16,6 @@ export default async function Page() {
           description={d.description}
         />
       ))}
-    </IndexListPage>
+    </IndexPage>
   );
 }
