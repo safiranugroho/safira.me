@@ -37,16 +37,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = params;
   const { frontmatter } = await getCompiledMDX(slug);
   return {
-    title: frontmatter.title,
+    title: `${frontmatter.title} | Safira Nugroho`,
     description: frontmatter.description,
     openGraph: {
-      title: frontmatter.title,
+      title: `${frontmatter.title} | Safira Nugroho`,
       description: frontmatter.description,
       images: frontmatter.image,
       type: 'article'
     },
     twitter: {
-      title: frontmatter.title,
+      title: `${frontmatter.title} | Safira Nugroho`,
       description: frontmatter.description,
       card: 'summary_large_image',
       site: '@hisafira',
