@@ -44,7 +44,7 @@ export const Navigation = () => {
   ]
 
   return (
-    <nav className={`sticky top-0 md:w-1/3 lg:w-1/6 md:h-screen bg-inherit`}>
+    <nav className={`sticky top-0 min-w-max md:w-1/3 lg:w-1/6 md:h-screen bg-inherit`}>
       <div className="w-full h-full bg-slate-200 dark:bg-slate-900 bg-opacity-10 dark:bg-opacity-10 border-slate-800 dark:border-slate-200 border-opacity-10 dark:border-opacity-10 border-solid border-b-2 md:border-b-0 md:border-r-2">
         <ul className='sticky top-0 m-0 py-4 md:py-10 px-8 list-none w-full flex flex-row justify-between md:flex-col md:gap-0'>
           {nav.map(({ href, children }, i) => {
