@@ -1,9 +1,9 @@
 import fs from "fs";
 import Link from "next/link";
 import { mdx } from "./_lib/dir-path";
-import { dMMMMyyyy } from "./_lib/format-date";
 import { getCompiledMDX } from "./_lib/get-compiled-mdx";
 import { Frontmatter } from "./_lib/types";
+import { IndexListPage } from "../_components/IndexListPage";
 
 type Post = {
   slug: string;
@@ -14,17 +14,16 @@ export default async function Page() {
   const posts = await getPosts();
 
   return (
-    <div className="md:max-w-prose">
-      <h1>Blog</h1>
+    <IndexListPage title="Blog" description="A stream of consciousness.">
       {posts
         .sort((a, b) => b.frontmatter.date.getTime() - a.frontmatter.date.getTime())
         .map(({ slug, frontmatter }: Post, i: number) => (
-          <div key={i} className="mb-8">
+          <div key={i}>
             <Link href={`/blog/${slug}`} className="text-2xl">{frontmatter.title}</Link>
             <p className="mt-0">{frontmatter.description}</p>
           </div>
       ))}
-    </div>
+    </IndexListPage>
   );
 }
 

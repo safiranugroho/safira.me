@@ -1,17 +1,19 @@
-import Link from "next/link";
 import { doodles } from "@safiranugroho/doodles/metadata";
 import { Doodle } from "./types";
+import { IndexItem } from "../_components/IndexItem";
+import { IndexListPage } from "../_components/IndexListPage";
 
 export default async function Page() {
   return (
-    <div className="flex flex-col md:max-w-prose">
-      <h1>Doodles</h1>
+    <IndexListPage title="Doodles" description="A collection of non-responsive, non-accessible, completely messy doodles.">
       {doodles.map((d: Doodle, i: number) => (
-        <div key={i} className="mb-8">
-          <Link href={`/doodles/${d.slug}`} className="text-2xl">{d.title}</Link>
-          <p className="m-0">{d.description}</p>
-        </div>
+        <IndexItem
+          key={i}
+          href={`/doodles/${d.slug}`}
+          title={d.title}
+          description={d.description}
+        />
       ))}
-    </div>
+    </IndexListPage>
   );
 }
