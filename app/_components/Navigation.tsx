@@ -49,10 +49,10 @@ export const Navigation = () => {
         <ul className='sticky top-0 m-0 py-4 md:py-10 px-8 list-none w-full flex flex-row justify-between md:flex-col md:gap-0'>
           {nav.map(({ href, children }, i) => {
             const isActive = href === '/' ? isHome : pathname.startsWith(href);
-            return <li key={i} className="my-1"><Link href={href} className={isActive ? 'font-bold no-underline' : undefined}>{children}</Link></li>
+            return <li key={i} className="my-1"><Link href={href} className={isActive ? 'no-underline' : undefined}>{children}</Link></li>
           })}
         </ul>
-        <ul className='hidden sticky top-0 m-0 px-8 list-none w-full md:flex flex-row justify-between md:flex-col md:gap-0'>
+        <ul className='hidden sticky top-0 m-0 px-8 list-none w-full md:flex md:flex-col md:gap-0'>
           {socialMedia.map(({ href, children }, i) => (
             <li key={i} className="my-1"><Link href={href}>{children}</Link></li>
           ))}
