@@ -2,14 +2,17 @@ import Link from "next/link";
 import { IndexPage } from "./_components/IndexPage";
 import { InlineImage } from "./_components/InlineImage";
 
+import flagAu from './_assets/flag-au.png';
+import flagId from './_assets/flag-id.png';
+
 export default function Home() {
   return (
     <IndexPage>
       <h1>Hi, I&apos;m Safira 👋🏼</h1>
       <p>
         I&apos;m a software engineer,<br />
-        based in Melbourne/Naarm <InlineImage src="/flag-au.png" alt="Australian flag"/><br />
-        and I go by she/her/dia. <InlineImage src="/flag-id.png" alt="Indonesian flag"/>
+        based in Melbourne/Naarm <InlineImage src={flagAu} alt="Australian flag"/><br />
+        and I go by she/her/dia. <InlineImage src={flagId} alt="Indonesian flag"/>
       </p>
       <p>
         I <Link href="/blog">write</Link> and <Link href="/doodles">doodle</Link> sometimes.

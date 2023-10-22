@@ -357,9 +357,9 @@
   integrity sha512-6i/8UoL0P5y4leBIGzvkZdS85RDMG9y1ihZzmTZQ5LdHUYmZ7pKFoj8X0236s3lusPs1Fa5HTQUpwI+UfTcmeA==
 
 "@safiranugroho/doodles@^1.0.3":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@safiranugroho/doodles/-/doodles-1.0.6.tgz#ef1404f323847d6694e17d1ef2288fc0ad76cdc5"
-  integrity sha512-gTJ9FrXOyZRy5/PFUw6Y3b0aDDb6K1IqfK6Jj77/3FDUgKW2biOvW2HcZRJZUGleEiBaJh2jXPL0CyJt6grdeg==
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@safiranugroho/doodles/-/doodles-1.0.7.tgz#82cdc00eeedf28aa61be95da0dbb57c893dcce65"
+  integrity sha512-GpUHr6L2oKoJAUQNotekvYyLueiPYO27kx1tdMtZGHxzdnxggcnT/0i1ovupLWSnzqM7wQrTeC54f0nifezW3g==
   dependencies:
     "@sveltejs/adapter-vercel" "^3.0.3"
     prismjs "^1.29.0"

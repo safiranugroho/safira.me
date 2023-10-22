@@ -5,6 +5,14 @@ import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 import { InlineImage } from "./InlineImage";
 
+import home from '../_assets/home.png';
+import blog from '../_assets/blog.png';
+import doodles from '../_assets/doodles.png';
+import twitter from '../_assets/hatching-chick.png';
+import linkedin from '../_assets/necktie.png';
+import github from '../_assets/desktop-computer.png';
+import email from '../_assets/love-letter.png';
+
 export const Navigation = () => {
   const pathname = usePathname();
   const isHome = pathname === '/';
@@ -12,34 +20,34 @@ export const Navigation = () => {
   const nav = [
     {
       href: '/',
-      children: <><InlineImage src='/home.png' alt="Home icon" />Home</>
+      children: <><InlineImage src={home} alt="Home icon" />Home</>
     },
     {
       href: '/blog',
-      children: <><InlineImage src='/blog.png' alt="Blog icon" />Blog</>
+      children: <><InlineImage src={blog} alt="Blog icon" />Blog</>
     },
     {
       href: '/doodles',
-      children: <><InlineImage src='/doodles.png' alt="Doodles icon" />Doodles</>
+      children: <><InlineImage src={doodles} alt="Doodles icon" />Doodles</>
     },
   ];
 
   const socialMedia = [
     {
       href: 'https://www.twitter.com/hisafira',
-      children: <><InlineImage src='/hatching-chick.png' alt="Bird icon" />Twitter</>
+      children: <><InlineImage src={twitter} alt="Bird icon" />Twitter</>
     },
     {
       href: 'https://www.linkedin.com/in/safiranugroho',
-      children: <><InlineImage src='/necktie.png' alt="Neck tie icon" />LinkedIn</>
+      children: <><InlineImage src={linkedin} alt="Neck tie icon" />LinkedIn</>
     },
     {
       href: 'https://www.github.com/safiranugroho',
-      children: <><InlineImage src='/desktop-computer.png' alt="Computer icon" />GitHub</>
+      children: <><InlineImage src={github} alt="Computer icon" />GitHub</>
     },
     {
       href: 'mailto:safiranugroho+site@gmail.com',
-      children: <><InlineImage src='/love-letter.png' alt="Letter icon" />Email</>
+      children: <><InlineImage src={email} alt="Letter icon" />Email</>
     },
   ]
 
