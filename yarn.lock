@@ -356,10 +356,10 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.5.1.tgz#5f1b518ec5fa54437c0b7c4a821546c64fed6922"
   integrity sha512-6i/8UoL0P5y4leBIGzvkZdS85RDMG9y1ihZzmTZQ5LdHUYmZ7pKFoj8X0236s3lusPs1Fa5HTQUpwI+UfTcmeA==
 
-"@safiranugroho/doodles@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@safiranugroho/doodles/-/doodles-1.0.2.tgz#a30224480d88721dc7beca0332a2a600afa5f3cf"
-  integrity sha512-zuwOzTxSXs2DnuEKSur3L8awGpvkhx59fWryQFZBkGpWBdZpBpr8XHAt0DzsZBBj/mfyf/EqE30QENvtR8VcvQ==
+"@safiranugroho/doodles@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@safiranugroho/doodles/-/doodles-1.0.3.tgz#3755f67ca684e32e39cb555203740fbc59fe6fb3"
+  integrity sha512-aDPmxhkjVZ06o0UMJNi3e4REQd8srKdEshg9H3+qwM91S3TaR8+Onkojw2k4PhuUVp93qYe+CZU3MGfwgwtlZw==
   dependencies:
     "@sveltejs/adapter-vercel" "^3.0.3"
     prismjs "^1.29.0"

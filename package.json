@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.15",
-    "@safiranugroho/doodles": "^1.0.2",
+    "@safiranugroho/doodles": "^1.0.3",
     "@tailwindcss/typography": "^0.5.9",
     "@types/node": "20.3.0",
     "@types/react": "18.2.11",
