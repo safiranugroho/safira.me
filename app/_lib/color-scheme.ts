@@ -47,7 +47,17 @@ const colorSchemes: Record<string, ColorScheme> = {
     theme: 'prose-peach-army',
     bgLight: 'bg-peach-500',
     bgDark: 'dark:bg-army-500'
-  }
+  },
+  'celery-sky': {
+    theme: 'prose-celery-sky',
+    bgLight: 'bg-celery-500',
+    bgDark: 'dark:bg-sky-500'
+  },
+  'lavender-ruby': {
+    theme: 'prose-lavender-ruby',
+    bgLight: 'bg-lavender-500',
+    bgDark: 'dark:bg-ruby-500'
+  },
 };
 
 export function getRandomColorScheme() {

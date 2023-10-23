@@ -1,49 +1,52 @@
-/** @type {import('tailwindcss').Config} */
 const typography = ({ theme }) => {
-  const colorSchemes = [['moss','sapphire'], ['lemon','aubergine'], ['peach','army']]
-  return colorSchemes.reduce((acc, [light, dark]) => ({
-    ...acc,
-    [`${light}-${dark}`]: {
-      css: {
-        // Light mode
-        '--tw-prose-body': theme(`colors.${dark}[500]`),
-        '--tw-prose-headings': theme(`colors.${dark}[500]`),
-        '--tw-prose-lead': theme(`colors.${dark}[600]`),
-        '--tw-prose-links': theme(`colors.${dark}[500]`),
-        '--tw-prose-bold': theme(`colors.${dark}[500]`),
-        '--tw-prose-counters': theme(`colors.${dark}[500]`),
-        '--tw-prose-bullets': theme(`colors.${dark}[500]`),
-        '--tw-prose-hr': theme(`colors.${light}[400]`),
-        '--tw-prose-quotes': theme(`colors.${dark}[500]`),
-        '--tw-prose-quote-borders': theme(`colors.${dark}[600]`),
-        '--tw-prose-captions': theme(`colors.${dark}[700]`),
-        '--tw-prose-code': theme(`colors.${dark}[500]`),
-        '--tw-prose-pre-code': theme(`colors.${dark}[700]`),
-        '--tw-prose-pre-bg': theme(`colors.${light}[400]`),
-        '--tw-prose-th-borders': theme(`colors.${light}[600]`),
-        '--tw-prose-td-borders': theme(`colors.${light}[600]`),
-        // Dark mode
-        '--tw-prose-invert-body': theme(`colors.${light}[500]`),
-        '--tw-prose-invert-headings': theme(`colors.${light}[500]`),
-        '--tw-prose-invert-lead': theme(`colors.${light}[400]`),
-        '--tw-prose-invert-links': theme(`colors.${light}[500]`),
-        '--tw-prose-invert-bold': theme(`colors.${light}[500]`),
-        '--tw-prose-invert-counters': theme(`colors.${light}[500]`),
-        '--tw-prose-invert-bullets': theme(`colors.${light}[500]`),
-        '--tw-prose-invert-hr': theme(`colors.${dark}[400]`),
-        '--tw-prose-invert-quotes':  theme(`colors.${light}[500]`),
-        '--tw-prose-invert-quote-borders': theme(`colors.${dark}[600]`),
-        '--tw-prose-invert-captions': theme(`colors.${light}[500]`),
-        '--tw-prose-invert-code': theme(`colors.${light}[500]`),
-        '--tw-prose-invert-pre-code': theme(`colors.${light}[400]`),
-        '--tw-prose-invert-pre-bg': 'rgb(0 0 0 / 50%)',
-        '--tw-prose-invert-th-borders': theme(`colors.${light}[400]`),
-        '--tw-prose-invert-td-borders': theme(`colors.${light}[400]`),
-      },
-    }
-  }), {})
+  const colorSchemes = ['moss-sapphire', 'lemon-aubergine', 'peach-army', 'celery-sky', 'lavender-ruby']
+  return colorSchemes.reduce((acc, colorScheme) => {
+    const [light, dark] = colorScheme.split('-')
+    return ({
+      ...acc,
+      [colorScheme]: {
+        css: {
+          // Light mode
+          '--tw-prose-body': theme(`colors.${dark}[500]`),
+          '--tw-prose-headings': theme(`colors.${dark}[500]`),
+          '--tw-prose-lead': theme(`colors.${dark}[600]`),
+          '--tw-prose-links': theme(`colors.${dark}[500]`),
+          '--tw-prose-bold': theme(`colors.${dark}[500]`),
+          '--tw-prose-counters': theme(`colors.${dark}[500]`),
+          '--tw-prose-bullets': theme(`colors.${dark}[500]`),
+          '--tw-prose-hr': theme(`colors.${light}[400]`),
+          '--tw-prose-quotes': theme(`colors.${dark}[500]`),
+          '--tw-prose-quote-borders': theme(`colors.${dark}[600]`),
+          '--tw-prose-captions': theme(`colors.${dark}[700]`),
+          '--tw-prose-code': theme(`colors.${dark}[500]`),
+          '--tw-prose-pre-code': theme(`colors.${dark}[700]`),
+          '--tw-prose-pre-bg': theme(`colors.${light}[400]`),
+          '--tw-prose-th-borders': theme(`colors.${light}[600]`),
+          '--tw-prose-td-borders': theme(`colors.${light}[600]`),
+          // Dark mode
+          '--tw-prose-invert-body': theme(`colors.${light}[500]`),
+          '--tw-prose-invert-headings': theme(`colors.${light}[500]`),
+          '--tw-prose-invert-lead': theme(`colors.${light}[400]`),
+          '--tw-prose-invert-links': theme(`colors.${light}[500]`),
+          '--tw-prose-invert-bold': theme(`colors.${light}[500]`),
+          '--tw-prose-invert-counters': theme(`colors.${light}[500]`),
+          '--tw-prose-invert-bullets': theme(`colors.${light}[500]`),
+          '--tw-prose-invert-hr': theme(`colors.${dark}[400]`),
+          '--tw-prose-invert-quotes':  theme(`colors.${light}[500]`),
+          '--tw-prose-invert-quote-borders': theme(`colors.${dark}[600]`),
+          '--tw-prose-invert-captions': theme(`colors.${light}[500]`),
+          '--tw-prose-invert-code': theme(`colors.${light}[500]`),
+          '--tw-prose-invert-pre-code': theme(`colors.${light}[400]`),
+          '--tw-prose-invert-pre-bg': 'rgb(0 0 0 / 50%)',
+          '--tw-prose-invert-th-borders': theme(`colors.${light}[400]`),
+          '--tw-prose-invert-td-borders': theme(`colors.${light}[400]`),
+        },
+      }
+    })
+  }, {})
 }
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
   content: [
@@ -120,6 +123,61 @@ module.exports = {
           800: "#060e06",
           900: "#030703"
         },
+        celery: {
+          100: "#FDFFF9",
+          200: "#FBFFF0",
+          300: "#F8FEE7",
+          400: "#F2FED5",
+          500: "#EDFDC3",
+          600: "#D5E4B0",
+          700: "#8E9875",
+          800: "#6B7258",
+          900: "#474C3B",
+        },
+        sky: {
+          100: "#EAF2F5",
+          200: "#CBDEE5",
+          300: "#ACC9D6",
+          400: "#6DA1B7",
+          500: "#2F7998",
+          600: "#2A6D89",
+          700: "#1C495B",
+          800: "#153644",
+          900: "#0E242E",
+        },
+        lavender: {
+          100: "#F7F6FE",
+          200: "#ECE8FD",
+          300: "#E0DAFC",
+          400: "#C9BFF9",
+          500: "#B2A3F7",
+          600: "#A093DE",
+          700: "#6B6294",
+          800: "#50496F",
+          900: "#35314A",
+        },
+        ruby: {
+          100: "#F2E9EB",
+          200: "#DDC8CC",
+          300: "#C9A7AD",
+          400: "#A16670",
+          500: "#782432",
+          600: "#6C202D",
+          700: "#48161E",
+          800: "#361017",
+          900: "#240B0F",
+        },
+        latte: {
+          100: "#ECEBEA",
+          200: "#D0CDCA",
+          300: "#B4AEAA",
+          400: "#7C726A",
+          500: "#44352A",
+          600: "#3D3026",
+          700: "#292019",
+          800: "#1F1813",
+          900: "#14100D",
+        }
       },
       typography
     },
