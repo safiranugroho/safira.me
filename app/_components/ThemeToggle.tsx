@@ -51,7 +51,6 @@ export const ThemeToggle = () => {
     onThemeChange(); 
   };
 
-  const ring = 'ring-current ring-1 ring-inset ring-offset-0';
   return (
     <div className="hidden md:flex md:flex-col md:gap-4 md:fixed md:bottom-8 md:left-8">
       <Switch checked={isDarkMode} onChange={onChange} className="bg-slate-900 dark:bg-slate-200 bg-opacity-10 dark:bg-opacity-10 inline-flex h-7 w-12 items-center rounded-full transition-colors">
