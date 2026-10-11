@@ -18,8 +18,7 @@ export default function Home() {
         I <Link href="/blog">write</Link> and <Link href="/doodles">doodle</Link> sometimes.
       </p>
       <p className="md:hidden">
-        I&apos;m on <Link href="https://www.twitter.com/hisafira/">Twitter</Link>,{' '}
-        <Link href="https://www.linkedin.com/in/safiranugroho/">LinkedIn</Link>,
+        I&apos;m on <Link href="https://www.linkedin.com/in/safiranugroho/">LinkedIn</Link>{' '}
         and <Link href="https://github.com/safiranugroho">GitHub</Link>,<br/> 
         or reach me at <Link href="mailto:safiranugroho+site@gmail.com">safiranugroho@gmail.com</Link>.
       </p>

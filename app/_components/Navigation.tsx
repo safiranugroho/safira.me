@@ -34,10 +34,6 @@ export const Navigation = () => {
 
   const socialMedia = [
     {
-      href: 'https://www.twitter.com/hisafira',
-      children: <><InlineImage src={twitter} alt="Bird icon" />Twitter</>
-    },
-    {
       href: 'https://www.linkedin.com/in/safiranugroho',
       children: <><InlineImage src={linkedin} alt="Neck tie icon" />LinkedIn</>
     },
