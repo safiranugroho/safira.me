@@ -53,16 +53,16 @@ export const Navigation = () => {
 
   return (
     <nav className={`sticky top-0 min-w-max md:w-1/3 lg:w-1/6 md:h-screen bg-inherit z-20`}>
-      <div className="w-full h-full bg-slate-200 dark:bg-slate-900 bg-opacity-10 dark:bg-opacity-10 border-slate-800 dark:border-slate-200 border-opacity-10 dark:border-opacity-10 border-solid border-b-2 md:border-b-0 md:border-r-2">
-        <ul className='sticky top-0 m-0 py-4 md:py-10 px-8 list-none w-full flex flex-row justify-between md:flex-col md:gap-0'>
+      <div className="w-full h-full bg-slate-200/10 dark:bg-slate-900/10 border-slate-800/10 dark:border-slate-200/10 border-solid border-b-2 md:border-b-0 md:border-r-2">
+        <ul className='sticky top-0 m-0! py-4 md:py-10 px-8 list-none w-full flex flex-row justify-between md:flex-col md:gap-0'>
           {nav.map(({ href, children }, i) => {
             const isActive = href === '/' ? isHome : pathname.startsWith(href);
-            return <li key={i} className="my-1"><Link href={href} className={isActive ? 'no-underline' : undefined}>{children}</Link></li>
+            return <li key={i} className="my-1!"><Link href={href} className={isActive ? 'no-underline' : undefined}>{children}</Link></li>
           })}
         </ul>
-        <ul className='hidden sticky top-0 m-0 px-8 list-none w-full md:flex md:flex-col md:gap-0'>
+        <ul className='hidden sticky top-0 m-0! px-8 list-none w-full md:flex md:flex-col md:gap-0'>
           {socialMedia.map(({ href, children }, i) => (
-            <li key={i} className="my-1"><Link href={href}>{children}</Link></li>
+            <li key={i} className="my-1!"><Link href={href}>{children}</Link></li>
           ))}
         </ul>
         <ThemeToggle />

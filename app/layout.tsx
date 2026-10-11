@@ -8,7 +8,7 @@ type RootLayoutProps = {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const prose = `prose dark:prose-invert hover:prose-a:no-underline before:prose-code:hidden after:prose-code:hidden`;
+  const prose = `prose dark:prose-invert prose-a:hover:no-underline prose-code:before:hidden prose-code:after:hidden`;
 
   return (
     <html lang="en">

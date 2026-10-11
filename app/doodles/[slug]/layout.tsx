@@ -19,7 +19,7 @@ export default async function Layout({ params, children }: LayoutProps) {
   return <>
     <div className="mb-12">
       <h1 className="mb-0">{data.title}</h1>
-      <p className="m-0">{data.description}</p>
+      <p className="m-0!">{data.description}</p>
     </div>
     <div className="flex flex-col justify-center m-auto h-full">{children}</div>
   </>;
