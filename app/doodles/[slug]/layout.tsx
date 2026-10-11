@@ -8,12 +8,12 @@ type LayoutParams = {
 }
 
 type LayoutProps = {
-  params: LayoutParams;
+  params: Promise<LayoutParams>;
   children?: React.ReactNode;
 }
 
-export default function Layout({ params, children }: LayoutProps) {
-  const { slug } = params;
+export default async function Layout({ params, children }: LayoutProps) {
+  const { slug } = await params;
   const data = doodles.find((d: Doodle) => d.slug === slug)!;
   
   return <>
@@ -26,7 +26,7 @@ export default function Layout({ params, children }: LayoutProps) {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await params;
   const data = doodles.find((d: Doodle) => d.slug === slug)!;
 
   return {

@@ -1,5 +1,5 @@
 import './globals.css'
-import { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Navigation } from './_components/Navigation'
 import Script from 'next/script'
 
@@ -40,8 +40,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
   )
 }
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
-  viewport: 'width=device-width, initial-scale=1.0',
   title: 'Safira Nugroho',
   description: 'Personal site of Safira Nugroho',
   openGraph: {

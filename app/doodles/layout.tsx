@@ -13,12 +13,12 @@ export async function generateMetadata(): Promise<Metadata> {
     title: `Doodles | Safira Nugroho`,
     description: 'A collection of non-responsive, non-accessible, completely messy doodles.',
     openGraph: {
-      title: `Blog | Safira Nugroho`,
+      title: `Doodles | Safira Nugroho`,
       description: 'A collection of non-responsive, non-accessible, completely messy doodles.',
       type: 'website'
     },
     twitter: {
-      title: `Blog | Safira Nugroho`,
+      title: `Doodles | Safira Nugroho`,
       description: 'A collection of non-responsive, non-accessible, completely messy doodles.',
       card: 'summary',
       site: '@hisafira',

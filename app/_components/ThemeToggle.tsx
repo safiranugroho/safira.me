@@ -28,6 +28,8 @@ export const ThemeToggle = () => {
     const theme = currentTheme || systemTheme;
     persistTheme(theme);
     setTheme(theme);
+    // Theme is only known after hydration (localStorage / matchMedia), so sync it here.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDarkMode(theme === 'dark');
 
     return () => {
@@ -53,7 +55,7 @@ export const ThemeToggle = () => {
 
   return (
     <div className="hidden md:flex md:flex-col md:gap-4 md:fixed md:bottom-8 md:left-8">
-      <Switch checked={isDarkMode} onChange={onChange} className="bg-slate-900 dark:bg-slate-200 bg-opacity-10 dark:bg-opacity-10 inline-flex h-7 w-12 items-center rounded-full transition-colors">
+      <Switch checked={isDarkMode} onChange={onChange} className="bg-slate-900/10 dark:bg-slate-200/10 inline-flex h-7 w-12 items-center rounded-full transition-colors">
         <Image 
           src={isDarkMode ? lightMode : darkMode} 
           alt={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}

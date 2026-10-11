@@ -5,11 +5,11 @@ type PageParams = {
 };
 
 export type PageProps = {
-  params: PageParams;
+  params: Promise<PageParams>;
 };
 
 export default async function Page({ params }: PageProps) {
-  const { slug } = params;
+  const { slug } = await params;
   const { content } = await getCompiledMDX(slug);
   return content;
 }

@@ -6,26 +6,30 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint .",
+    "test": "node --test \"app/**/*.test.mjs\""
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.15",
-    "@safiranugroho/doodles": "^1.0.11",
-    "@tailwindcss/typography": "^0.5.9",
-    "@types/node": "20.3.0",
-    "@types/react": "18.2.11",
-    "@types/react-dom": "18.2.4",
-    "autoprefixer": "10.4.14",
-    "date-fns": "^2.30.0",
-    "eslint": "8.42.0",
-    "eslint-config-next": "13.4.5",
-    "next": "13.4.5",
-    "next-mdx-remote": "^4.4.1",
-    "postcss": "8.4.24",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "remark-gfm": "^3.0.1",
-    "tailwindcss": "3.3.2",
-    "typescript": "5.1.3"
+    "@headlessui/react": "^2.2.10",
+    "@safiranugroho/doodles": "^1.0.12",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/typography": "^0.5.20",
+    "@types/node": "^24",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "date-fns": "^4.4.0",
+    "eslint": "^9",
+    "eslint-config-next": "^16.4.0",
+    "next": "^16.4.0",
+    "next-mdx-remote": "^6.0.0",
+    "postcss": "^8.5.29",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "remark-gfm": "^4.0.1",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0"
+  },
+  "engines": {
+    "node": ">=24"
   }
 }

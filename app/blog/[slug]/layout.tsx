@@ -1,6 +1,6 @@
 import { PageProps } from "./page";
 import { getCompiledMDX } from "../_lib/get-compiled-mdx";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { dMMMMyyyy } from "../_lib/format-date";
 
 type MetadataProps = {
@@ -20,7 +20,7 @@ type LayoutProps = PageProps & {
 }
 
 export default async function Layout({ children, params }: LayoutProps) {
-  const { slug } = params;
+  const { slug } = await params;
   const { frontmatter } = await getCompiledMDX(slug);
   return <div className="flex flex-col lg:flex-row">
     <article className="md:max-w-prose">
@@ -34,7 +34,7 @@ export default async function Layout({ children, params }: LayoutProps) {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await params;
   const { frontmatter } = await getCompiledMDX(slug);
   return {
     title: `${frontmatter.title} | Safira Nugroho`,
