@@ -1,0 +1,134 @@
+---
+title: The service nobody owned (and how we finally turned it off)
+description: What I learned retiring a legacy service that had been owned by everyone.
+image: /fragmented-lego.jpg
+type: article
+date: 2026-10-12
+tags:
+  - techniques
+  - experience
+  - defragmentation
+---
+
+When I pulled up the traffic dashboard for the service, more than half of its endpoints weren't getting any requests. None at all.
+
+I'd love to say I found that number while hunting for it. Really I'd been thinking about how *abandoned* the service felt, and the dashboard just confirmed it. Over 60% of what the service could do, nobody was asking it to do anymore.
+
+This is the story of how we retired that service. It was slow, it involved a lot of people, and it was one of the most satisfying things I've worked on.
+
+## What it was
+
+Picture the backstage control room of a product. When a customer contacts support and says "something's wrong with my account," this is the tool the support person opens. Ours was used by technical support, customer success managers, customer support, and software engineers. They could look things up, fix things, and do a handful of jobs that only internal people should be able to do.
+
+The tool had two halves: a web UI, and a Java service sitting behind it as its BFF (backend-for-frontend). The BFF's job was to go out to a bunch of downstream services, gather everything the UI needed, and stitch it together.
+
+That's a perfectly reasonable design. The trouble came from what happened to it over the years.
+
+[![A white wall with a bunch of fragmented legos on it](/fragmented-lego.jpg)](https://unsplash.com/photos/a-white-wall-with-a-bunch-of-legos-on-it-9csIu-AhnWY)
+
+## How it got that way
+
+By the time I properly got into it, the service had spent a long time under a "shared ownership" model. Anyone could contribute, and lots of people did. To be honest, I'm fuzzy on the full history here, so this is how it looked from where I was standing.
+
+Shared ownership sounds generous. In practice it often means nobody owns it. If you don't really understand a piece of code and it isn't yours, you don't refactor it. You add something next to it instead. So instead of updating or cleaning up existing endpoints, people created new ones, over and over. That's how you end up with a service where most of the endpoints are ghosts.
+
+Other things had built up too:
+
+- **It wasn't on the standard stack.** Most backend services at the company follow a "golden path" with the same tooling, the same way to run things, and the same conventions. This one didn't. Some endpoints were built in REST, some were in GRPC. It had its own bespoke way of running locally and its own Getting Started doc, so you had to learn a whole separate setup just to touch it.
+- **The data flow was hard to follow.** Tracing a request from the UI to wherever the data actually came from took real effort.
+- **The ground was moving underneath it.** Most of the downstream services it relied on were being retired and replaced by one central API.
+
+That last point is what forced the decision.
+
+## The obvious move (and why we didn't make it)
+
+If everything under your service is being replaced, the obvious fix is to rewire the service to call the new central API and carry on.
+
+But think about what that leaves you with. Any change an engineer made for the internal tool would go into the central API first, *then* through our BFF, and only then reach the screen. Two hops for every feature. A whole service whose main job had become passing things along.
+
+Then there was access control. Keeping our own backend meant maintaining our own permission system for internal users, and keeping it in sync with the one the central API already had. Internal users can do a lot, so getting their permissions right matters, and maintaining two systems for it is more risk than it's worth.
+
+So I wrote an RFC proposing we stop migrating the service and get rid of it. The internal UI would talk to the central API directly, mostly through its GraphQL layer, because aggregated data from multiple places is an inherent requirement from the internal tool.
+
+## The best pushback reframed my own proposal
+
+My RFC's title talked about folding the old service *into* the central API. One of the most useful comments I got was basically: **no, that's not the goal.** The internal tool shouldn't get its own special corner of the API. It should be *just another customer* of the API, like everyone else. The API should be designed around resources and filters, not around who happens to be calling it. Who's allowed to do what is the job of the access-control layer, not the API design.
+
+That changed how I thought about the internal tool. It isn't a separate system with special powers. It's the same product everyone else uses, with more permissions.
+
+Not every question got settled. Someone asked a very fair one: *if the internal tool and the customer-facing app show the same tables, why do we have two apps at all?* That question is about product strategy for internal tooling as a whole, which is bigger than this RFC, so we kept it out of scope and it's being looked at separately.
+
+That tension between "the API is for everyone" and "the internal tool needs this specific thing" still comes up now and then. It doesn't always need resolving, though. Sometimes, when you dig into it, the feature turns out not to need to exist, and the argument ends itself.
+
+## How we actually ran it
+
+The RFC wasn't really where this started. By the time I wrote it, I'd already spent a few months mapping things out.
+
+**Map everything first.** I started with a spreadsheet of every endpoint the old service exposed, a bit over a hundred of them. For each one I recorded: Does it get traffic? Is there already an equivalent in the central API? Does it fit how the central API is structured? Which downstream services does it touch? Roughly how much effort is it? What's blocking it?
+
+The traffic column did a lot of the work. Anything with no traffic didn't need migrating, just deleting. That brought the real scope down to about 40 endpoints.
+
+I also wrote up exactly what we'd need from the team retiring one of the big downstream services: every query, filter, sort, and field. That way they could plan for us instead of finding out later.
+
+**Group the work into types.** At kickoff we sorted the remaining endpoints into five rough types:
+
+- lists that span the whole system, not scoped to one customer
+- role management
+- entities enriched with data from other services
+- internal-only actions
+- plain pass-throughs
+
+Each type had a different answer to "where does this go?", so it was easier to decide once per type than once per endpoint. We set a priority order and wrote down the open questions, including whether full deprecation was even the right goal.
+
+**Decide together, row by row.** The product manager for the central API went through the spreadsheet with me line by line, tagging which team owned each piece. Out of that came a simple decision tree: if something makes sense as a general API resource, build it in REST. Combine data for the UI in GraphQL. Anything truly internal-only stays in GraphQL, gated with a manual permission check.
+
+**Split by entity, ship behind flags.** We divided the work by entity, vertically, rather than by layer. One person took one level of the hierarchy, another took the next, working top-down. Every feature went behind its own feature flag, implemented at the UI level, so we could roll it out gradually and switch it off again to talk to the old service if needed. I kept a running progress log so anyone could see where things stood. We took the quick wins early. One feature we could simply remove, and that was done in under a week.
+
+The flags paid off. After several entities were migrated, we had to turn them back off because of latency. It turns out an internal tool is often the first consumer to ask for "everything, across the whole table." The public-facing app had always queried within one parent, like entities belonging to one account. Getting total counts for pagination across an entire table was a new problem. The team that owned the data added a precomputed view to handle the counts, and we turned the flags back on. It wasn't a setback, just part of the work.
+
+**Dependencies go both ways.** Access control is a good example. We needed internal permissions to move to the new system before we could turn the old service off. But a separate effort to introduce finer-grained internal roles was also waiting on *us*. While the old service sat in the middle, the only workaround meant passing very powerful credentials through it, and nobody wanted that. So retiring the service wasn't only cleanup. It also unblocked other people's work.
+
+**Define done before you get there.** For the final shutdown, the definition of done was simple: no references to the old service left in the frontend, and all of its infrastructure shut down. That became a handful of tickets: remove the last calls, move the last permission checks, delete the migration flags, clean up the codebase, then shut down the service and archive the repo.
+
+All in, it took about 15 months from the first scoping work to the repo being archived. A few months later, when we were planning a different cleanup, a teammate suggested running it the same way: tickets with definitions of done and expected timelines, handed out to the teams that would do the work.
+
+## The long tail
+
+One thing I learned about deprecation: the first 80% is the easy part.
+
+In the end, the last real blocker was that access-control piece. Once internal permissions had moved to the new system, everything else could follow.
+
+Throughout the migration, our approach was to do the work ourselves and ask the owning teams for code reviews, unless they already had something in progress that fit our use case, in which case we filled in the gaps. The very last features followed the same pattern. They landed at the end of the year, though, when everyone was low on capacity. A teammate made a pragmatic suggestion: build the new endpoints as thin pass-throughs, exactly like the old service did, and tidy them up in the new year. After six-plus months of migration, the priority was to finally put a nail in it.
+
+You can always polish something after it's shipped. You can't polish something that never ships.
+
+## Turning it off
+
+I wish I had a dramatic shutdown story. What I have is a feeling: it was *very* satisfying. It felt like a load off my shoulders, and off the whole team's.
+
+Once we zoomed out, the result was bigger than one retired service. We'd had four separate internal tools for managing the same things, and now there was one. Internal and external users now get access through *exactly the same technical flow*. The only difference is the human side: who asks, who approves.
+
+The biggest day-to-day difference is how clear ownership became. Every entity in the system and its lifecycle now has an obvious owner in the central API. My team owns the internal tool that reads from and writes to it. That's it. Nobody has to wonder whose job something is anymore.
+
+So it started with shared ownership turning into no ownership, and it ended with everyone knowing what's theirs.
+
+## What I'd do differently
+
+Looking back, I wish I'd spent more time early on in conversations about access control and about which features were really internal-only versus external, and thought about the implementation more holistically instead of one endpoint at a time.
+
+I also wish I'd called a few higher-level meetings. We weren't the only internal system depending on that central API. Who else was there? What did we have in common, where did we differ, and how could we help each other? We'd probably have found shared needs sooner and argued less about them later.
+
+## If you're staring at your own zombie service
+
+It's a marathon, not a sprint. Before you start:
+
+- **Clarify ownership and responsibilities from day one,** both for the migration itself and for whatever replaces the old system.
+- **Get buy-in from everyone who has to be involved,** not just everyone who's affected.
+- **Flag the critical flows.** Know which paths absolutely cannot break.
+- **Map the dependency tree.** Do I deprecate first, or do you? Is other work already in flight that might handle part of this for you?
+- **Picture the blue sky.** Then check whether it matches where your organization's tech strategy is heading.
+- **Ask what you're actually trying to achieve.** Is deprecating it really the answer, or should it evolve into something else?
+
+That last question matters most. A lot of my work is defragmentation: merging, consolidating, decommissioning. But removing something should be a decision, not a reflex.
+
+*Opinions here are my own.*
