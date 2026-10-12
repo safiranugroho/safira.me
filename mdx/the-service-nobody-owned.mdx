@@ -80,7 +80,7 @@ I also wrote up exactly what we'd need from the team retiring one of the big dow
 
 Each type had a different answer to "where does this go?", so it was easier to decide once per type than once per endpoint. We set a priority order and wrote down the open questions, including whether full deprecation was even the right goal.
 
-**Decide together, row by row.** The product manager for the central API went through the spreadsheet with me line by line, tagging which team owned each piece. Out of that came a simple decision tree: if something makes sense as a general API resource, build it in REST. Combine data for the UI in GraphQL. Anything truly internal-only stays in GraphQL, gated with a manual permission check.
+**Decide together, row by row.** The product manager for the central API went through the spreadsheet with me line by line, tagging which team owned each piece. Out of that came a simple decision tree: if something makes sense as a general API resource, build it in REST. Combine data for the UI in GraphQL. Anything truly internal-only is gated with a manual permission check.
 
 **Split by entity, ship behind flags.** We divided the work by entity, vertically, rather than by layer. One person took one level of the hierarchy, another took the next, working top-down. Every feature went behind its own feature flag, implemented at the UI level, so we could roll it out gradually and switch it off again to talk to the old service if needed. I kept a running progress log so anyone could see where things stood. We took the quick wins early. One feature we could simply remove, and that was done in under a week.
 
